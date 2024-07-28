@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Listing from "./pages/Listing";
 import CharacterProfile from "./pages/CharacterProfile";
-import Header from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import { ThreeCircles } from "react-loader-spinner";
 
 function App() {
@@ -21,8 +21,9 @@ function App() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "100vw",
-            height: "100vh",
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
           }}
         >
           <ThreeCircles
@@ -36,14 +37,20 @@ function App() {
           />
         </div>
       ) : (
-        <>
-          <Header />
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
+          }}
+        >
+          <Navbar />
           <Routes>
             <Route path="/:type" element={<Listing />} />
             <Route path="/character/:id" element={<CharacterProfile />} />
             <Route path="*" element={<Navigate to={"/character"} />} />
           </Routes>
-        </>
+        </div>
       )}
     </>
   );
