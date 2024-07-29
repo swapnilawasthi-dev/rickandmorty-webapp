@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import apiService from "../services/apiService";
+import apiService from "../helpers/apiService";
+import EpisodeCard from "../components/EpisodeCard";
+import {
+  getEpisodeIds,
+  getLocationId,
+  getResidentIds,
+} from "../helpers/constant";
+import LocationCard from "../components/LocationCard";
 
 function CharacterProfile() {
   const { id } = useParams();
@@ -16,80 +23,72 @@ function CharacterProfile() {
   const getDetails = async () => {
     const character = await apiService(`character/${id}`, "");
     setCharacterDetails(character);
-    const episodeIds = character?.episode
-      .map((url) => url.split("/").pop())
-      .join(",");
-    const locationId = character?.location.url.split("/").pop();
-    console.log(episodeIds, locationId);
+
+    const episodeIds = getEpisodeIds(character);
     const episodes = await apiService(`episode/${episodeIds}`, "");
     setFeaturedEpisodes(episodes);
 
+    const locationId = getLocationId(character);
     const location = await apiService(`location/${locationId}`, "");
     setLocationDetails(location);
 
-    const residentIds = location?.residents
-      .map((url) => url.split("/").pop())
-      .join(",");
+    const residentIds = getResidentIds(location);
     const residents = await apiService(`character/${residentIds}`, "");
     setResidents(residents);
   };
 
   return (
     <div>
-      <style>
-        {`
-          .episode_card:hover, .resident_card:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease-in-out;
-          }
-        `}
-      </style>
       <section className="profile_container">
         <div
           style={{
             display: "flex",
             alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
           }}
         >
-          <div className="profile_img_section">
-            <img
-              className="profile_img-LG"
-              src={characterDetails?.image}
-              alt="Profile"
-            />
-          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "60%",
+              border: "solid",
+              borderRadius: "40px",
+            }}
+          >
+            <div className="profile_img_section">
+              <img
+                className="profile_img-LG"
+                src={characterDetails?.image}
+                alt="Profile"
+              />
+            </div>
 
-          <div className="profile_desc_section">
-            <h2>{characterDetails?.name}</h2>
-            <div className="character_details">
-              <p>
-                <strong>Status:</strong> {characterDetails?.status || "N/A"}
-              </p>
-              <p>
-                <strong>Species:</strong> {characterDetails?.species || "N/A"}
-              </p>
-              <p>
-                <strong>Gender:</strong> {characterDetails?.gender || "N/A"}
-              </p>
-              <p>
-                <strong>Origin:</strong>{" "}
-                {characterDetails?.origin?.name || "N/A"}
-              </p>
-              <p>
-                <strong>Location:</strong>{" "}
-                {characterDetails?.location?.name || "N/A"}
-              </p>
+            <div className="profile_desc_section">
+              <h2>{characterDetails?.name}</h2>
+              <div className="character_details">
+                <p>
+                  <strong>Species:</strong> {characterDetails?.species || "N/A"}
+                </p>
+                <p>
+                  <strong>Gender:</strong> {characterDetails?.gender || "N/A"}
+                </p>
+                <p>
+                  <strong>Origin:</strong>{" "}
+                  {characterDetails?.origin?.name || "N/A"}
+                </p>
+                <LocationCard location={locationDetails} onnClick={() => {}} />
+              </div>
             </div>
           </div>
           <div
             style={{
-              backgroundColor: "#f3f6fd",
+              backgroundColor: "#dff7f8",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "flex-start",
               padding: "20px",
-              width: "30%",
               borderRadius: "30px",
             }}
           >
@@ -104,21 +103,21 @@ function CharacterProfile() {
             >
               Featured Episodes
             </div>
-            <div style={{ overflow: "scroll", height: "300px" }}>
-              {featuredEpisodes.map((episode) => (
-                <div key={episode.id} className="episode_card">
-                  <h4>{episode.name}</h4>
-                  <p>
-                    {episode.episode} . {episode.air_date}
-                  </p>
-                </div>
+            <div
+              style={{
+                overflow: "scroll",
+                height: "300px",
+              }}
+            >
+              {featuredEpisodes.map((episode, i) => (
+                <EpisodeCard key={i} episode={episode} />
               ))}
             </div>
           </div>
         </div>
         <div
           style={{
-            backgroundColor: "#f3f6fd",
+            backgroundColor: "#dff7f8",
             padding: "20px",
             marginTop: "30px",
             borderRadius: "30px",

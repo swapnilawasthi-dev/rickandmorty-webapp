@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Listing from "./pages/Listing";
 import CharacterProfile from "./pages/CharacterProfile";
 import Navbar from "./components/Navbar";
 import { ThreeCircles } from "react-loader-spinner";
+import Characters from "./pages/Characters";
+import Episodes from "./pages/Episodes";
+import Locations from "./pages/Locations";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +48,9 @@ function App() {
         >
           <Navbar />
           <Routes>
-            <Route path="/:type" element={<Listing />} />
+            <Route path="/character" element={<Characters />} />
+            <Route path="/episode" element={<Episodes />} />
+            <Route path="/location" element={<Locations />} />
             <Route path="/character/:id" element={<CharacterProfile />} />
             <Route path="*" element={<Navigate to={"/character"} />} />
           </Routes>
