@@ -22,7 +22,8 @@ const CharactersModal = ({ item, type, onClose }) => {
 
   const getCharacters = async (characterIds) => {
     const result = await apiService("character/" + characterIds, "");
-    setCharacters(result);
+    // Check if episodes is an object and wrap it in an array if true
+    setCharacters(Array.isArray(result) ? result : [result]);
   };
 
   if (!item) return null;

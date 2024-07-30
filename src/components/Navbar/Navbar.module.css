@@ -1,0 +1,59 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+  }
+
+
+  
+.logoContainer {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+.title {
+    font-family: "Playwrite BE WAL";
+    font-weight: bold;
+    font-size: 1.7rem;
+    margin-left: 10px;
+}
+
+.navLinks {
+    display: flex;
+    flex-direction: row;
+}
+@media (max-width: 1023px) {
+    .navLinks {
+      display: none; /* Hide navLinks below 1024px */
+    }
+  }
+
+.link {
+    margin: 5px 15px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    font-family: "Bona Nova SC";
+    color: inherit;
+}
+
+.bottomNavContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    
+    
+}
+@media (min-width: 1024px) {
+  .bottomNavContainer {
+    display: none; 
+  }
+}

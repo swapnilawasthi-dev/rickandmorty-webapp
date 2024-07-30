@@ -62,13 +62,13 @@ const Episodes = () => {
         position: "relative",
       }}
     >
-      <div>
+      <div style={{ position: "relative" }}>
         <img
           style={{
             width: "200px",
             position: "absolute",
-            top: -40,
-            right: 300,
+            left: "400px",
+            bottom: "0",
           }}
           src={hero}
           alt="hero"
@@ -81,7 +81,7 @@ const Episodes = () => {
             color: "#1f1c2e",
           }}
         >
-          EPISODES
+          EPISODES{"  "}
         </h1>
       </div>
       <div

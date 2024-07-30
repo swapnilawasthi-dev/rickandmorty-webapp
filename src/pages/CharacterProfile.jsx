@@ -8,6 +8,7 @@ import {
   getResidentIds,
 } from "../helpers/constant";
 import LocationCard from "../components/LocationCard";
+import ResidentCard from "../components/ResidentCard";
 
 function CharacterProfile() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ function CharacterProfile() {
 
   useEffect(() => {
     getDetails();
-  }, []);
+  }, [id]);
 
   const getDetails = async () => {
     const character = await apiService(`character/${id}`, "");
@@ -26,7 +27,8 @@ function CharacterProfile() {
 
     const episodeIds = getEpisodeIds(character);
     const episodes = await apiService(`episode/${episodeIds}`, "");
-    setFeaturedEpisodes(episodes);
+    // Check if episodes is an object and wrap it in an array if true
+    setFeaturedEpisodes(Array.isArray(episodes) ? episodes : [episodes]);
 
     const locationId = getLocationId(character);
     const location = await apiService(`location/${locationId}`, "");
@@ -46,14 +48,19 @@ function CharacterProfile() {
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
+            fontFamily: "Orbitron",
           }}
         >
+          {/* Character Details */}
           <div
             style={{
               display: "flex",
-              width: "60%",
-              border: "solid",
+              width: "65%",
+              border: "dashed",
+              borderColor: "#aa550a",
               borderRadius: "40px",
+              borderWidth: "1px",
+              padding: "30px",
             }}
           >
             <div className="profile_img_section">
@@ -65,22 +72,112 @@ function CharacterProfile() {
             </div>
 
             <div className="profile_desc_section">
-              <h2>{characterDetails?.name}</h2>
-              <div className="character_details">
-                <p>
-                  <strong>Species:</strong> {characterDetails?.species || "N/A"}
-                </p>
-                <p>
-                  <strong>Gender:</strong> {characterDetails?.gender || "N/A"}
-                </p>
-                <p>
-                  <strong>Origin:</strong>{" "}
-                  {characterDetails?.origin?.name || "N/A"}
-                </p>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: "10px",
+                }}
+              >
+                <div style={{ fontSize: "40px", textDecoration: "underline" }}>
+                  {characterDetails?.name}
+                </div>
+                <div
+                  className={
+                    characterDetails?.status
+                      ? characterDetails?.status.toLowerCase()
+                      : ""
+                  }
+                >
+                  {characterDetails?.status}
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "Bona Nova SC",
+                    fontSize: "24px",
+                    color: "#7f8c8d",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {characterDetails?.species}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "Bona Nova SC",
+                    fontSize: "16px",
+                    color: "#aa550a",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {characterDetails?.gender}
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  margin: "20px 0px ",
+                  fontFamily: "Bona Nova SC",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    textAlign: "left",
+                  }}
+                >
+                  <div>Origin</div>
+                  <div style={{ fontSize: "25px", color: "#457b9d" }}>
+                    {characterDetails?.origin?.name}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    textAlign: "right",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div>Type</div>
+                    <div style={{ fontSize: "25px", color: "#457b9d" }}>
+                      {characterDetails?.type
+                        ? characterDetails?.type
+                        : "unknown"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ fontSize: "25px" }}>Location Details:</div>
                 <LocationCard location={locationDetails} onnClick={() => {}} />
               </div>
             </div>
           </div>
+          {/* Featured Episodes */}
           <div
             style={{
               backgroundColor: "#dff7f8",
@@ -115,6 +212,7 @@ function CharacterProfile() {
             </div>
           </div>
         </div>
+        {/* Other Location Residents */}
         <div
           style={{
             backgroundColor: "#dff7f8",
@@ -148,33 +246,7 @@ function CharacterProfile() {
           >
             {residents.length > 0 ? (
               residents.map((resident) => (
-                <div
-                  key={resident.id}
-                  className="resident_card episode_card"
-                  style={{
-                    flex: "0 0 auto",
-                    marginRight: "20px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#fff",
-                    borderRadius: "10px",
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                    padding: "15px",
-                    width: "120px",
-                    marginTop: "10px",
-                  }}
-                >
-                  <img
-                    style={{ height: "120px", width: "120px" }}
-                    src={resident.image}
-                  />
-                  <h4 style={{ margin: "0 0 10px 0" }}>{resident.name}</h4>{" "}
-                  {/* Adds bottom margin */}
-                  <p style={{ margin: "0", color: "#7f8c8d" }}>
-                    {resident.species}
-                  </p>{" "}
-                  {/* Optional: styles text */}
-                </div>
+                <ResidentCard resident={resident} key={resident.id} />
               ))
             ) : (
               <p>No residents found.</p> // Display a message if there are no residents

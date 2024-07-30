@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import CharacterProfile from "./pages/CharacterProfile";
-import Navbar from "./components/Navbar";
-import { ThreeCircles } from "react-loader-spinner";
+import Navbar from "./components/Navbar/Navbar";
+import { DNA } from "react-loader-spinner";
 import Characters from "./pages/Characters";
 import Episodes from "./pages/Episodes";
 import Locations from "./pages/Locations";
@@ -28,7 +28,7 @@ function App() {
             overflow: "hidden",
           }}
         >
-          <ThreeCircles
+          <DNA
             visible={true}
             height="100"
             width="100"
@@ -44,6 +44,7 @@ function App() {
             width: "100%",
             height: "100%",
             overflow: "hidden",
+            marginBottom: "20px",
           }}
         >
           <Navbar />

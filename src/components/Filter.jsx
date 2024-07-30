@@ -35,6 +35,7 @@ function Filter({ handleFilterChange, isAdvanceFilter = false }) {
       style={{
         marginLeft: "20px",
         marginRight: "20px",
+        flexWrap: "wrap",
         marginTop: "10px",
         display: "flex",
         alignItems: "center",

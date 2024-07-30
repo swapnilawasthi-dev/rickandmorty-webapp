@@ -126,7 +126,7 @@ p {
 }
 
 .profile_img-LG {
-	height: 400px;
+	height: 320px;
 	width: 300px;
 	border-radius: 40px;
   
@@ -169,6 +169,7 @@ p {
 .profile_desc_section {
 	display: flex;
 	flex-direction: column;
+  width: 100%;
 
 	/* margin-left: 50px; */
 }
@@ -486,6 +487,28 @@ button {
 .episode_card:hover, .location_card:hover, .resident_card:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease-in-out;
+}
+
+.alive {
+  color: #0b9622;
+  background-color: #E2FFE7;
+  padding: 5px 10px;
+  font-family: "Roboto";
+  border-radius: 5px;
+}
+.dead {
+  color: #EB3B3B;
+  background-color: #FFEAEA;
+  padding: 5px 10px;
+  font-family: "Roboto";
+  border-radius: 5px;
+}
+.unknown {
+  color: darkslategray;
+  background-color: #dcdbdb;
+  padding: 5px 10px;
+  font-family: "Roboto";
+  border-radius: 5px;
 }
 
 
