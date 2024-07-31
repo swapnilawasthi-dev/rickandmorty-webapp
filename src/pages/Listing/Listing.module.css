@@ -1,0 +1,129 @@
+.container {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .heroImage {
+    width: 200px;
+    position: absolute;
+    right: -200px;
+    bottom: 0;
+  }
+
+  .hero {
+    position: relative;
+  }
+  
+  .title {
+    font-family: "Orbitron";
+    height: 100px;
+    font-size: 45px;
+    color: #1f1c2e;
+    width: 370px;
+    text-transform:uppercase;
+  }
+  
+  .filterContainer {
+    background-color: #fefefe;
+    border-radius: 30px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Orbitron";
+  }
+  
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  @media (max-width: 1024px) {
+    .hero {
+        position: static;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        justify-content: space-around;
+        width: 100%;
+    }
+    
+    .heroImage {
+        position: static;
+    }
+}
+@media (max-width: 767px) {
+    .hero {
+        position: static;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .title {
+        height: 70px;
+    }
+
+    .hero h1 {
+        font-size: xx-large;
+        width: 280px;
+    }
+    
+    .heroImage {
+        position: static;
+        width: 150px;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero {
+        position: static;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .title {
+        height: 50px;
+    }
+
+    .hero h1 {
+        font-size: x-large;
+        width: 200px;
+    }
+    
+    .heroImage {
+        position: static;
+        width: 100px;
+    }
+}
+
+@media (max-width: 374px) {
+    .hero {
+        position: static;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .title {
+        height: 40px;
+    }
+
+    .hero h1 {
+        font-size: large;
+        width: 150px;
+    }
+    
+    .heroImage {
+        position: static;
+        width: 80px;
+    }
+}

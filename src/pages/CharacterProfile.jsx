@@ -9,6 +9,7 @@ import {
 } from "../helpers/constant";
 import LocationCard from "../components/LocationCard";
 import ResidentCard from "../components/ResidentCard";
+import CharactersModal from "../components/CharactersModal";
 
 function CharacterProfile() {
   const { id } = useParams();
@@ -16,6 +17,15 @@ function CharacterProfile() {
   const [featuredEpisodes, setFeaturedEpisodes] = useState([]);
   const [locationDetails, setLocationDetails] = useState([]);
   const [residents, setResidents] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleCardClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedItem(null);
+  };
 
   useEffect(() => {
     getDetails();
@@ -55,12 +65,13 @@ function CharacterProfile() {
           <div
             style={{
               display: "flex",
-              width: "65%",
+              // width: "65%",
               border: "dashed",
               borderColor: "#aa550a",
               borderRadius: "40px",
               borderWidth: "1px",
               padding: "30px",
+              flexWrap: "wrap",
             }}
           >
             <div className="profile_img_section">
@@ -124,7 +135,7 @@ function CharacterProfile() {
               <div
                 style={{
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "flex-start",
                   justifyContent: "space-between",
                   margin: "20px 0px ",
                   fontFamily: "Bona Nova SC",
@@ -138,7 +149,13 @@ function CharacterProfile() {
                   }}
                 >
                   <div>Origin</div>
-                  <div style={{ fontSize: "25px", color: "#457b9d" }}>
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      color: "#457b9d",
+                      maxWidth: "320px",
+                    }}
+                  >
                     {characterDetails?.origin?.name}
                   </div>
                 </div>
@@ -157,7 +174,13 @@ function CharacterProfile() {
                     }}
                   >
                     <div>Type</div>
-                    <div style={{ fontSize: "25px", color: "#457b9d" }}>
+                    <div
+                      style={{
+                        fontSize: "20px",
+                        color: "#457b9d",
+                        maxWidth: "200px",
+                      }}
+                    >
                       {characterDetails?.type
                         ? characterDetails?.type
                         : "unknown"}
@@ -173,7 +196,11 @@ function CharacterProfile() {
                 }}
               >
                 <div style={{ fontSize: "25px" }}>Location Details:</div>
-                <LocationCard location={locationDetails} onnClick={() => {}} />
+                <LocationCard
+                  onClick={handleCardClick}
+                  location={locationDetails}
+                  onnClick={() => {}}
+                />
               </div>
             </div>
           </div>
@@ -207,7 +234,11 @@ function CharacterProfile() {
               }}
             >
               {featuredEpisodes.map((episode, i) => (
-                <EpisodeCard key={i} episode={episode} />
+                <EpisodeCard
+                  key={i}
+                  onClick={handleCardClick}
+                  episode={episode}
+                />
               ))}
             </div>
           </div>
@@ -254,6 +285,11 @@ function CharacterProfile() {
           </div>
         </div>
       </section>
+      <CharactersModal
+        item={selectedItem}
+        type={selectedItem?.episode ? "episode" : "location"}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }

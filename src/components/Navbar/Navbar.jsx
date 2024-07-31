@@ -70,7 +70,7 @@ function Navbar() {
           <BottomNavigationAction
             label="Characters"
             icon={<SnowboardingIcon />}
-            className={[styles.bottomNavAction]}
+            className={styles.bottomNavAction}
           />
           <BottomNavigationAction
             label="Episodes"

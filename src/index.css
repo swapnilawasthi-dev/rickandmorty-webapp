@@ -368,8 +368,7 @@ box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
 background-color: #fee4cb;
 border-bottom-left-radius: 12px;
 border-bottom-right-radius: 12px;
-margin-top: 10px;
- padding: 24px 16px;
+padding: 24px 10px;
 }
 
 .card__category {
@@ -379,6 +378,7 @@ margin-top: 10px;
   letter-spacing: 2px;
   font-weight: 500;
 color: #868686;
+margin: 10px 0px;
 }
 
 .card__title {
@@ -491,14 +491,14 @@ button {
 
 .alive {
   color: #0b9622;
-  background-color: #E2FFE7;
+  background-color: #c3dfc8;
   padding: 5px 10px;
   font-family: "Roboto";
   border-radius: 5px;
 }
 .dead {
   color: #EB3B3B;
-  background-color: #FFEAEA;
+  background-color: #ffa8a8;
   padding: 5px 10px;
   font-family: "Roboto";
   border-radius: 5px;
