@@ -1,7 +1,10 @@
+// All Status for filtering Characters
 export const STATUS = ["Alive", "Dead", "unknown"];
 
+// All Gender for filtering Characters
 export const GENDER = ["male","female","genderless","unknown"];
 
+// All Species for filtering Characters
 export const SPECIES = [
     "Human",
     "Alien",

@@ -34,10 +34,6 @@
     border-top-right-radius: 12px;
     }
   
-  .link {
-    /* styles for link */
-  }
-  
   .imgHover {
     transition: 0.2s all ease-out;
     background-size: cover;

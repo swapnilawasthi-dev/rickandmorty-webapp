@@ -36,6 +36,7 @@ function Filter({ handleFilterChange, isAdvanceFilter = false }) {
       className={styles.container}
       style={{ justifyContent: isAdvanceFilter ? "space-between" : "center" }}
     >
+      {/* For Search by Name */}
       <div>
         <TextField
           type="text"
@@ -58,6 +59,7 @@ function Filter({ handleFilterChange, isAdvanceFilter = false }) {
           }}
         />
       </div>
+      {/* For Filtering Characters */}
       {isAdvanceFilter && (
         <div className={styles.advanceFilters}>
           <div className={styles.filter}>

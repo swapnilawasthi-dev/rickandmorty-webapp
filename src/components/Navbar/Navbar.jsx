@@ -13,6 +13,7 @@ function Navbar() {
   const navigate = useNavigate();
   return (
     <>
+      {/* For Large Devices */}
       <nav className={styles.nav}>
         {/* Logo */}
         <div className={styles.logoContainer}>
@@ -40,6 +41,7 @@ function Navbar() {
           </Link>
         </div>
       </nav>
+      {/* For Small Devices */}
       <nav className={styles.bottomNavContainer}>
         <BottomNavigation
           sx={{

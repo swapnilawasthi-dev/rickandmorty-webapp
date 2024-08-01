@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./LocationCard.module.css"; // Import the CSS module
+import styles from "./LocationCard.module.css";
 
 const LocationCard = ({ location, onClick }) => {
   return (

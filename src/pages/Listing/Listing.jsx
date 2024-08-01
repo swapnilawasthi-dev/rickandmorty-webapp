@@ -62,11 +62,14 @@ function Listing({ type }) {
 
   return (
     <div className={styles.container}>
+      {/* Hero Section */}
       <div className={styles.hero}>
         <img className={styles.heroImage} src={hero} alt="hero" />
         <h1 className={styles.title}> {type}S</h1>
       </div>
+      {/* Listing */}
       <div className={styles.filterContainer}>
+        {/* Filters */}
         <Filter isAdvanceFilter handleFilterChange={handleFilterChange} />
         <div className={styles.cardContainer}>
           {isRefreshing ? (
@@ -109,6 +112,7 @@ function Listing({ type }) {
             </>
           )}
         </div>
+        {/* Pagination */}
         <Pagination handlePageClick={handlePageClick} totalPages={totalPages} />
       </div>
       <CharactersModal

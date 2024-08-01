@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./EpisodeCard.module.css"; // Import the CSS module
+import styles from "./EpisodeCard.module.css";
 
 const EpisodeCard = ({ episode, onClick }) => {
   return (

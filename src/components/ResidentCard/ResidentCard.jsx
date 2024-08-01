@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./ResidentCard.module.css"; // Import the CSS module
+import styles from "./ResidentCard.module.css";
 
 const ResidentCard = ({ resident }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={styles.residentCard} // Apply the CSS module class
+      className={styles.residentCard}
       onClick={() => navigate("/character/" + resident?.id)}
     >
       <img
