@@ -52,6 +52,9 @@ function Navbar() {
               {
                 color: "#d28619",
               },
+            "& .css-sxw2zh.Mui-selected": {
+              color: "#d28619",
+            },
             backgroundColor: "#fcd3ab",
             borderTopLeftRadius: "40px",
             borderTopRightRadius: "40px",
