@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./EpisodeCard.module.css"; // Import the CSS module
 
 const EpisodeCard = ({ episode, onClick }) => {
   return (
-    <div className="episode_card" onClick={() => onClick(episode)}>
+    <div className={styles.episodeCard} onClick={() => onClick(episode)}>
       <h4>{episode.name}</h4>
       <p>
         <span>{episode.episode}</span> . {episode.air_date}

@@ -1,0 +1,47 @@
+  .episodeCard {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 10px;
+    cursor: pointer;
+    opacity: 0.7;
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .episodeCard h4 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .episodeCard p {
+    margin: 5px 0;
+    color: #436c16;
+    font-family: 'Bona Nova SC';
+    font-size: '0.8rem';
+  }
+  .episodeCard span {
+    margin: 5px 0;
+    color: #aa550a;
+    font-family: 'Bona Nova SC';
+    font-size: '0.8rem';
+  }
+
+  .episodeCard:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  @media (max-width: 450px) {
+    .episodeCard{
+        height: 55px;
+        width: 180px;
+    }
+    .episodeCard h4{
+        font-size: 13px;
+    }
+    .episodeCard p {
+        font-size: 10px;
+    }
+  }

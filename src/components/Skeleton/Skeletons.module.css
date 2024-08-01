@@ -1,0 +1,21 @@
+.margin {
+    margin: 10px;
+}
+
+.marginVertical {
+    margin: 10px 0px;
+}
+
+.mobileImg {
+    display: none;
+}
+
+@media (max-width: 540px){
+    .mobileImg{
+        display: block;
+    }
+
+    .webImg{
+        display: none;
+    }
+}

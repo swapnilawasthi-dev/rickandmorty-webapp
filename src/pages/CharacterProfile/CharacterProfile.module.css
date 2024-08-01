@@ -1,0 +1,248 @@
+  .profileDetails {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Orbitron;
+  }
+  
+  .profileCard {
+    display: flex;
+    border: dashed;
+    border-color: #aa550a;
+    border-radius: 40px;
+    border-width: 1px;
+    padding: 30px;
+  }
+  
+  .profileImgSection {
+     margin-right: 50px;
+  }
+
+  .profileImgLG {
+	height: 320px;
+	width: 300px;
+	border-radius: 40px;
+	object-fit: cover;
+  }
+
+  .profileDescSection {
+	  display: flex;
+	  flex-direction: column;
+    width: 100%;
+  }
+
+  .name {
+      font-size: 40px;
+      text-decoration: underline;
+  }
+
+  .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+  }
+
+  .species {
+      font-family: "Bona Nova SC";
+      font-size: 24px;
+      color: #7f8c8d;
+      text-transform: capitalize;
+  }
+
+  .gender {
+      font-family: "Bona Nova SC";
+      font-size: 24px;
+      color: #7f8c8d;
+      text-transform: capitalize;
+  }
+
+  .details {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin: 10px 0px ;
+      font-family: "Bona Nova SC";
+  }
+
+  .originTitle {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+  .origin {
+      font-size: 20px;
+      color: #457b9d;
+      max-width: 320px;
+    }
+
+  .typeContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: right;
+  }  
+
+  .typeTitle {
+      display: flex;
+      flex-direction: column;
+    }
+
+  .type {
+      font-size: 20px;
+      color: #457b9d;
+      max-width: 200px;
+    }
+
+  .locationContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+
+
+  .location {
+      font-size: 25px;
+  }
+  
+  .episodeContainer {
+    background-color: #dff7f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    margin: 0px 10px;
+    border-radius: 30px;
+  }
+
+  .episodeTitle {
+    color: #5c6c74;
+    font-size: 1.4rem;
+    margin: 10px;
+    font-weight: bold;
+    font-family: "Oswald";
+  }
+
+  .episodeCards {
+    overflow: scroll;
+    height: 300px;
+  }
+  
+  .residentsContainer {
+    background-color: #dff7f8;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .residentTitle {
+    color: #5c6c74;
+    margin: 0px;
+    font-weight: bold;
+    font-family: "Oswald", sans-serif;
+  }
+
+  .residentCards {
+    overflow-x: scroll;
+    display: flex;
+    padding-bottom: 10px;
+  }
+
+  .profileContainer {
+	  margin: 20px 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 40px;
+  }
+
+  @media (max-width: 1250px) {
+    .profileDetails{
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .profileImgSection {
+      margin-right: 0px;
+   }
+
+    .episodeContainer{
+      margin: 10px 10px;
+      width: 100%;
+    }
+
+    .episodeCards{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .profileCard{
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+
+  @media (max-width: 1023px) {
+    .profileDetails{
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .episodeContainer{
+      margin: 10px 10px;
+      width: 100%;
+    }
+
+    .episodeCards{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .profileCard{
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .profileImgLG {
+      height: 220px;
+      width: 200px;
+      border-radius: 40px;
+      object-fit: cover;
+    }
+
+    .name {
+      font-size: 30px;
+      text-decoration: underline;
+    }
+    .profileCard {
+      padding: 10px;
+    }
+    .location {
+      font-size: 15px;
+    }
+    .species {
+      font-size: 15px;
+    }
+    .gender {
+      font-size: 15px;
+    }
+    .origin {
+      font-size: 15px;
+    }
+    .type {
+      font-size: 15px;
+    }
+  }
+  

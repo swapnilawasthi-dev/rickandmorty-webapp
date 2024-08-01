@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import CharacterProfile from "./pages/CharacterProfile";
+import CharacterProfile from "./pages/CharacterProfile/CharacterProfile";
 import Navbar from "./components/Navbar/Navbar";
 import { DNA } from "react-loader-spinner";
 import Listing from "./pages/Listing/Listing";
@@ -11,21 +11,12 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
   });
   return (
     <>
       {isLoading ? (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            height: "100%",
-            overflow: "hidden",
-          }}
-        >
+        <div className="loader">
           <DNA
             visible={true}
             height="100"
@@ -36,14 +27,7 @@ function App() {
           />
         </div>
       ) : (
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            overflow: "hidden",
-            marginBottom: "20px",
-          }}
-        >
+        <div className="container">
           <Navbar />
           <Routes>
             <Route path="/character" element={<Listing type="character" />} />

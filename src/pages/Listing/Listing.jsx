@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import ProfileCard from "../../components/ProfileCard";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import apiService from "../../helpers/apiService";
 import Filter from "../../components/Filter/Filter";
 import hero from "../../assets/svg/hero.svg";
 import Pagination from "../../components/Pagination/Pagination";
 import styles from "./Listing.module.css";
-import EpisodeCard from "../../components/EpisodeCard";
-import LocationCard from "../../components/LocationCard";
-import CharactersModal from "../../components/CharactersModal";
+import EpisodeCard from "../../components/EpisodeCard/EpisodeCard";
+import LocationCard from "../../components/LocationCard/LocationCard";
+import CharactersModal from "../../components/CharactersModal/CharactersModal";
+import Skeletons from "../../components/Skeleton/Skeletons";
 
 function Listing({ type }) {
   const [query, setQuery] = useState("");
@@ -15,6 +16,7 @@ function Listing({ type }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState({});
+  const [isRefreshing, setIsRefresing] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleCardClick = (item) => {
@@ -32,14 +34,21 @@ function Listing({ type }) {
   };
 
   useEffect(() => {
-    getList();
+    setIsRefresing(true);
   }, [filters, type]);
+
+  useEffect(() => {
+    getList();
+  }, [isRefreshing]);
 
   const getList = async () => {
     try {
       const result = await apiService(type, query);
-      setList(result.results);
-      setTotalPages(result.info.pages);
+      if (Array.isArray(result) ? result.length > 0 : result) {
+        setList(result.results);
+        setTotalPages(result.info.pages);
+      }
+      setIsRefresing(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -60,26 +69,45 @@ function Listing({ type }) {
       <div className={styles.filterContainer}>
         <Filter isAdvanceFilter handleFilterChange={handleFilterChange} />
         <div className={styles.cardContainer}>
-          {type == "character" &&
-            list.map((character) => (
-              <ProfileCard key={character.id} character={character} />
-            ))}
-          {type == "episode" &&
-            list.map((episode) => (
-              <EpisodeCard
-                key={episode.id}
-                episode={episode}
-                onClick={handleCardClick}
-              />
-            ))}
-          {type == "location" &&
-            list.map((location) => (
-              <LocationCard
-                key={location.id}
-                onClick={handleCardClick}
-                location={location}
-              />
-            ))}
+          {isRefreshing ? (
+            <>
+              {type === "character" &&
+                Array.from({ length: 20 }).map((_, index) => (
+                  <Skeletons key={index} type="character" />
+                ))}
+              {type === "episode" &&
+                Array.from({ length: 20 }).map((_, index) => (
+                  <Skeletons key={index} type="episode" />
+                ))}
+              {type === "location" &&
+                Array.from({ length: 20 }).map((_, index) => (
+                  <Skeletons key={index} type="location" />
+                ))}
+            </>
+          ) : (
+            <>
+              {type === "character" &&
+                list.map((character) => (
+                  <ProfileCard key={character.id} character={character} />
+                ))}
+              {type === "episode" &&
+                list.map((episode) => (
+                  <EpisodeCard
+                    key={episode.id}
+                    episode={episode}
+                    onClick={handleCardClick}
+                  />
+                ))}
+              {type === "location" &&
+                list.map((location) => (
+                  <LocationCard
+                    key={location.id}
+                    onClick={handleCardClick}
+                    location={location}
+                  />
+                ))}
+            </>
+          )}
         </div>
         <Pagination handlePageClick={handlePageClick} totalPages={totalPages} />
       </div>

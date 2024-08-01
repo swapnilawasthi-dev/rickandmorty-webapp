@@ -1,0 +1,61 @@
+  .locationCard {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 10px;
+    opacity: 0.7;
+    width: 220px;
+    cursor: pointer;
+    height: 95px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .locationCard h4 {
+    margin: 0 0 5px;
+    color: #333;
+  }
+  
+  .locationCard p {
+    margin: 5px 0;
+    color: #666;
+    font-family: 'Bona Nova SC';
+    font-size: 14px;
+  }
+
+  .locationCard:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .type {
+    color: #aa550a;
+    font-family: "Bona Nova SC";
+    font-size: 16px;
+  }
+  
+  .dimension {
+    color: #436c16;
+    font-family: "Bona Nova SC";
+    font-size: 14px;
+  }
+
+  @media (max-width: 450px) {
+    .locationCard{
+        height: 65px;
+    }
+    .locationCard h4{
+        font-size: 13px;
+    }
+    .locationCard p {
+        font-size: 10px;
+    }
+
+    .type {
+        font-size: 12px;
+    }
+    
+    .dimension {
+        font-size: 10px;
+    }
+  }

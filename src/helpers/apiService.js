@@ -8,7 +8,7 @@ const apiService = async (type,query) =>  {
       return response.data;
     } catch (error) {
       console.error(`Error fetching ${type}:`, error);
-      throw error;
+      return [];
     }
   }
 
